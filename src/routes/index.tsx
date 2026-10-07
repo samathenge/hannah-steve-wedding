@@ -5,7 +5,7 @@ import { photos } from '@/lib/photos';
 
 // Set this to the published address (for example 'https://hannah-steve.lovable.app') so that
 // WhatsApp and other apps can show the photo when the link is shared. Leave it empty until then.
-const SITE_URL = '';
+const SITE_URL = 'https://hannah-steve-wedding.vercel.app';
 
 const venue = 'A.I.C Mwariki Church, Pipeline, Nakuru, Kenya';
 const invitation = 'With the blessings of God and our parents, we joyfully invite you to join us as we exchange our vows.';
