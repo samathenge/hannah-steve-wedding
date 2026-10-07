@@ -1,0 +1,107 @@
+@import "tailwindcss" source(none);
+@import "tw-animate-css";
+@source "../src";
+@custom-variant dark (&:is(.dark *));
+@theme inline {
+  --color-background: var(--background); --color-foreground: var(--foreground);
+  --color-card: var(--card); --color-card-foreground: var(--foreground);
+  --color-popover: var(--background); --color-popover-foreground: var(--foreground);
+  --color-primary: var(--primary); --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary); --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--secondary); --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent); --color-accent-foreground: var(--primary-foreground);
+  --color-border: var(--border); --color-input: var(--border); --color-ring: var(--accent);
+  --color-destructive: var(--destructive); --color-destructive-foreground: var(--primary-foreground);
+  --radius-sm: 4px; --radius-md: 6px; --radius-lg: 8px;
+  --font-sans: 'Inter', sans-serif; --font-display: 'Cormorant Garamond', serif;
+}
+:root {
+  --background: oklch(0.958 0.004 91.45); --foreground: oklch(0.206 0.017 271.3);
+  --card: oklch(0.963 0.008 248); --secondary: oklch(0.963 0.008 248);
+  --primary: var(--foreground); --primary-foreground: oklch(0.978 0.003 248);
+  --muted-foreground: oklch(0.542 0.015 267);
+  --accent: oklch(0.59 0.108 51.5); --accent-text: oklch(0.49 0.108 51.5); --destructive: oklch(0.577 0.245 27.325);
+  --border: color-mix(in oklab, var(--foreground) 12%, transparent);
+  --hero-overlay: linear-gradient(to top, color-mix(in oklab, var(--foreground) 90%, transparent), color-mix(in oklab, var(--foreground) 6%, transparent) 62%, transparent);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+@layer base {
+  * { border-color: var(--border); }
+  html { scroll-behavior: smooth; scroll-padding-top: 92px; }
+  body { margin: 0; background: var(--background); color: var(--foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  h1,h2,p { margin: 0; } a { text-decoration: none; } button,a { -webkit-tap-highlight-color: transparent; }
+  ::selection { background: var(--accent); color: var(--primary-foreground); }
+}
+.invitation-header { position: sticky; top: 0; z-index: 40; border-bottom: 1px solid var(--border); background: color-mix(in oklab, var(--background) 88%, transparent); backdrop-filter: blur(16px); }
+.invitation-header-inner { max-width: 1152px; margin: auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+.invitation-brand { font: italic 500 24px var(--font-display); }
+.invitation-nav { display: flex; align-items: center; gap: 12px; }
+.invitation-nav-link { color: var(--muted-foreground); background: transparent; font-weight: 400; border-radius: 0; box-shadow: none; }
+.invitation-nav-link:hover { color: var(--accent); }
+.invitation-button { border-radius: 999px; min-height: 44px; padding: 10px 22px; font-size: 15px; font-weight: 400; box-shadow: none; }
+.invitation-button-solid { background: var(--primary); color: var(--primary-foreground); }
+.invitation-button-solid:hover { background: color-mix(in oklab, var(--primary) 85%, transparent); }
+.invitation-button-outline { border: 1px solid color-mix(in oklab, var(--foreground) 25%, transparent); background: transparent; color: var(--foreground); }
+.invitation-button-outline:hover { border-color: var(--accent); color: var(--accent); }
+.invitation-button-accent { background: var(--accent); color: var(--primary-foreground); min-height: 36px; }
+.invitation-button-accent:hover { background: color-mix(in oklab, var(--accent) 85%, var(--foreground)); }
+.invitation-section { max-width: 1152px; margin: auto; padding: 0 32px 26px; }
+.hero-section { padding-top: 24px; padding-bottom: 16px; }
+.invitation-hero { position: relative; overflow: hidden; border-radius: 26px; height: min(660px, calc(100svh - 175px)); min-height: 480px; }
+.hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.hero-shade { position: absolute; inset: 0; background: var(--hero-overlay); }
+.hero-copy { position: absolute; bottom: 0; left: 0; padding: 40px; color: var(--primary-foreground); }
+.eyebrow { text-transform: uppercase; font-size: 12px; line-height: 1.6; letter-spacing: 0.08em; }
+.hero-date { color: color-mix(in oklab, var(--primary-foreground) 90%, transparent); margin-bottom: 8px; animation: rise .7s var(--ease) both; }
+.hero-title { font: italic 500 104px/.88 var(--font-display); animation: wipe 1s var(--ease) .18s both; }
+.hero-invitation { margin-top: 20px; max-width: 400px; font-size: 15px; line-height: 1.8; color: color-mix(in oklab, var(--primary-foreground) 90%, transparent); animation: rise .7s var(--ease) .42s both; }
+.ceremony-band, .rsvp-band { background: color-mix(in oklab, var(--secondary) 70%, var(--background)); border: 1px solid var(--border); border-radius: 26px; padding: 36px; }
+.ceremony-band { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+.section-eyebrow { color: var(--accent-text); }
+.section-heading { font: italic 500 40px/1.15 var(--font-display); margin-top: 8px; text-wrap: balance; }
+.venue-address { color: var(--muted-foreground); font-size: 15px; margin-top: 12px; }
+.ceremony-date { font-size: 15px; margin-top: 6px; line-height: 1.7; }
+.ceremony-actions { display: flex; flex-direction: column; gap: 12px; justify-content: flex-end; }
+.photo-section { padding-top: 22px; padding-bottom: 42px; }
+.gallery-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; }
+.gallery-heading h2 { font: italic 500 32px var(--font-display); }
+.photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.gallery-photo { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; background: var(--secondary); }
+.gallery-embrace { grid-column: span 3; aspect-ratio: 16 / 8; object-position: 35% 40%; }
+.gallery-studio { aspect-ratio: 3 / 4; object-position: 50% 15%; }
+.gallery-outdoors, .gallery-outdoors2 { aspect-ratio: 3 / 4; object-position: 50% 64%; }
+.rsvp-section { padding-bottom: 40px; }
+.rsvp-grid { margin-top: 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.rsvp-card { background: var(--background); border: 1px solid var(--border); border-radius: 18px; padding: 24px; }
+.rsvp-name { font: italic 500 30px/1.1 var(--font-display); }
+.rsvp-number { margin-top: 6px; font-size: 15px; color: var(--muted-foreground); }
+.rsvp-actions { margin-top: 18px; display: flex; gap: 10px; }
+.rsvp-actions > a { flex: 1; }
+.countdown { display: flex; gap: 22px; margin-top: 26px; }
+.countdown-unit { display: flex; flex-direction: column; min-width: 52px; }
+.countdown-value { font: italic 500 40px/1 var(--font-display); color: var(--accent-text); font-variant-numeric: tabular-nums; }
+.countdown-label { margin-top: 4px; font-size: 13px; color: var(--muted-foreground); }
+.countdown-done { margin-top: 26px; font: italic 500 28px var(--font-display); color: var(--accent-text); }
+.invitation-footer { border-top: 1px solid var(--border); text-align: center; padding: 32px 20px; }
+.footer-name { font: italic 500 28px var(--font-display); color: var(--accent-text); }
+.footer-date { margin-top: 8px; color: var(--muted-foreground); }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes wipe { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0); } }
+@media (min-width: 1600px) { .invitation-hero { height: 650px; } }
+@media (max-width: 639px) {
+  .invitation-header-inner { padding: 14px 20px; } .invitation-brand { font-size: 21px; }
+  .invitation-nav { gap: 0; } .photos-nav { display: none; }
+  .invitation-nav-link { padding: 0 12px; font-size: 14px; } .invitation-button-accent { padding: 8px 16px; }
+  .invitation-section { padding-left: 20px; padding-right: 20px; }
+  .hero-section { padding-top: 18px; } .invitation-hero { border-radius: 16px; height: min(580px, calc(100svh - 145px)); min-height: 430px; }
+  .hero-photo { object-position: 50% 40%; } .hero-copy { padding: 24px; }
+  .hero-title { font-size: 68px; } .hero-date { font-size: 11px; } .hero-invitation { font-size: 14px; line-height: 1.7; margin-top: 16px; }
+  .ceremony-band { grid-template-columns: 1fr; gap: 24px; } .ceremony-band,.rsvp-band { padding: 24px; border-radius: 16px; }
+  .section-heading { font-size: 32px; } .ceremony-date { font-size: 14px; } .countdown { gap: 14px; } .countdown-value { font-size: 34px; } .countdown-unit { min-width: 44px; }
+  .photo-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .gallery-embrace { grid-column: span 2; aspect-ratio: 4 / 3; }
+  .gallery-outdoors2 { grid-column: span 2; aspect-ratio: 1 / 1; object-position: 50% 42%; }
+  .gallery-heading h2 { font-size: 28px; } .gallery-heading .eyebrow { font-size: 11px; }
+  .rsvp-grid { grid-template-columns: 1fr; } .rsvp-card { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation: none !important; transition: none !important; } }
